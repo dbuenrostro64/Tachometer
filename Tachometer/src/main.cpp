@@ -7,7 +7,7 @@
 
 const int TACH_PIN = 2;
 
-unsigned long oneRevtime;
+unsigned long oneRevTime;
 float rpmfloat;
 unsigned int rpm;
 bool tooslow = 1;
@@ -19,7 +19,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void RPM()  
 {
-  oneRevtime = TCNT1; // sets var equal to 16 bit timer value
+  oneRevTime = TCNT1; // sets var equal to 16 bit timer value
   TCNT1 = 0; // resets value of timer
   tooslow = 0; // prevents timer overflow from occuring
 }  
@@ -61,7 +61,7 @@ void calcRPM(void)
   }
   else 
   {
-    rpmfloat = 60*(62500.00/oneRevTime); // 
+    rpmfloat = 60*(62500.00/oneRevTime); // converts clock cycle timer to # of revs in a second, then mult by 60 for # in a minute
     rpm = round(rpmfloat);
   }
 }
